@@ -1,5 +1,5 @@
 node_modules/
-.env
+config.json
 package-lock.json
-Resources/Ticker.ai
+Resources/*.ai
 .vscode

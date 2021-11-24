@@ -1,31 +1,34 @@
-const Discord = require('discord.js');
-const { debug } = require('request-promise');
+const {MessageEmbed} = require('discord.js');
+const axios = require('axios');
+const {PrimaryColor} = require('../config.json')
 
 module.exports = {
     name: 'crab',
     async execute(interaction, Crabs) {
-        var embed;
-
         const count = await Crabs.countDocuments();
         const index = await Math.floor(Math.random() * count);
 
         const crab = (await Crabs.find().limit(1).skip(index))[0];
         if(crab)
         {
-            embed = new Discord.MessageEmbed()
-                .setColor(0x30972D)
+            const response = await axios.get(crab.image, { responseType: 'arraybuffer' });
+            const buffer = Buffer.from(response.data, "utf-8")
+
+            const embed = new MessageEmbed()
+                .setColor(PrimaryColor)
                 .setTitle(crab.crab)
-                .attachFiles([crab.image])
-                .setImage(crab.image);
+                .setImage(`attachment://${crab.crab.replace(' ', '_')}.jpg`);
+
+            interaction.reply({ embeds: [embed], files: [{attachment: buffer, name: `${crab.crab}.jpg`}]});
         }
         else
         {
-            embed = new Discord.MessageEmbed()
-                .setColor(0x30972D)
+            const embed = new MessageEmbed()
+                .setColor(PrimaryColor)
                 .setTitle("No Crabs Error :(");
-        }
 
-        return [embed];
+            interaction.reply({ embeds: [embed], ephermeral: true});
+        }
     }
 }
 
