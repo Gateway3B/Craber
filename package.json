@@ -4,18 +4,16 @@
   "description": "Discord.js bot for providing stock prices from ticker symbols.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js test",
-    "start": "node index.js"
+    "test": "node src/index.js test",
+    "start": "node src/index.js"
   },
-  "author": "",
+  "author": "Gateway3B",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.10",
     "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0",
     "mongoose": "^5.12.14",
-    "request-promise": "^4.2.6",
-    "yahoo-finance": "^0.3.7"
+    "request-promise": "^4.2.6"
   }
 }

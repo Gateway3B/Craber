@@ -1,6 +1,6 @@
 const {MessageEmbed} = require('discord.js');
 const axios = require('axios');
-const {PrimaryColor} = require('../config.json')
+const {PrimaryColor} = require('../../config.json')
 
 module.exports = {
     name: 'crab',
