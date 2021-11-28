@@ -35,6 +35,7 @@ client.on('ready', async () => {
         }
     });
 
+    commandFunctions.createDelete(client);
     commandFunctions.fetchCommands(client, 'Commands');
 });
 
