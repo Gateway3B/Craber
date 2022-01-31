@@ -14,12 +14,14 @@ module.exports = {
             const response = await axios.get(crab.image, { responseType: 'arraybuffer' });
             const buffer = Buffer.from(response.data, "utf-8")
 
+            crab.crab = crab.crab.replace(/ ([a-z])/g, function (x) {return x.toUpperCase()});
+
             const embed = new MessageEmbed()
                 .setColor(PrimaryColor)
                 .setTitle(crab.crab)
-                .setImage(`attachment://${crab.crab.replace(' ', '_')}.jpg`);
+                .setImage(`attachment://${crab.crab.replace(' ', '_').replace('.', '')}.jpg`);
 
-            interaction.reply({ embeds: [embed], files: [{attachment: buffer, name: `${crab.crab}.jpg`}]});
+            interaction.reply({ embeds: [embed], files: [{attachment: buffer, name: `${crab.crab.replace('.', '')}.jpg`}]});
         }
         else
         {
